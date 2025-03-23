@@ -4,16 +4,25 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
+import org.springframework.context.annotation.Bean;
 
 import java.util.UUID;
 
 @SpringBootApplication
+@ConfigurationPropertiesScan
 public class UpAndRunningFirstApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(UpAndRunningFirstApplication.class, args);
     }
 
+    @Bean
+    @ConfigurationProperties(prefix = "droid")
+    Droid createDroid() {
+        return new Droid();
+    }
 }
 @Entity
 class Coffee {
